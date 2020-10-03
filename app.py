@@ -10,9 +10,7 @@ import requests
 import json
 from pandas.io.json import json_normalize
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.decomposition import PCA
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import r2_score
+
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
@@ -27,8 +25,8 @@ def Uploads():
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        solarfile=request.files["file"]
-        file.save(os.path.join("Solar", solarfile.filename))
+        file=request.files["file"]
+        file.save(os.path.join("Solar", file.filename))
         return render_template("index.html", message = "File Uploaded Successfuly")
     return render_template("index.html", message = "Upload Solar Maintenance File")
     return "File Uploaded!"
@@ -42,8 +40,8 @@ def Uploads1():
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        windfile=request.files["file"]
-        file.save(os.path.join("Wind", windfile.filename))
+        file=request.files["file"]
+        file.save(os.path.join("Wind", file.filename))
         return render_template("index.html", message = "File Uploaded Successfuly")
     return render_template("index.html", message = "Upload Wind Maintenance File")
     return "File Uploaded!"
